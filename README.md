@@ -74,7 +74,7 @@ El proyecto sigue una arquitectura de 3 capas claramente separada en paquetes: *
 
 1.  **Clonar el Repositorio:**
     ```bash
-    git clone [Link repositorio]
+    https://github.com/rodrigoreyes-bit/Taller_4_AcademiCore.git
     ```
 
 2.  **Configuración del Entorno:**
