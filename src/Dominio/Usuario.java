@@ -1,49 +1,32 @@
 package Dominio;
-public class Usuario {
-	protected String nombre;
+public abstract class Usuario {
+	protected String identificacion;
 	protected String contraseña;
 	protected String rol;
-	protected String infoAdicional;
 	
-	public Usuario(String nombre, String contraseña, String rol) {
+	public Usuario(String identificacion, String contraseña, String rol) {
 		super();
-		this.nombre = nombre;
+		this.identificacion = identificacion;
 		this.contraseña = contraseña;
 		this.rol = rol;
 	}
-	
-	public void setInforAdicional(String info) {
-		this.infoAdicional = info;
+	public String getIdentificacion() {
+		return identificacion;
 	}
-	
-	
-	public String getNombre() {
-		return nombre;
+	public void setIdentificacion(String identificacion) {
+		this.identificacion = identificacion;
 	}
-
 	public String getContraseña() {
 		return contraseña;
-	}
-
-	public String getRol() {
-		return rol;
-	}
-
-	public String getInfoAdicional() {
-		return infoAdicional;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
 	}
+	public String getRol() {
+		return rol;
+	}
 	public void setRol(String rol) {
 		this.rol = rol;
-	}
-	public void setInfoAdicional(String infoAdicional) {
-		this.infoAdicional = infoAdicional;
 	}
 	
 	

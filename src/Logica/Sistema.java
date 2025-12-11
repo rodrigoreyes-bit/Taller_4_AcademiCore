@@ -1,5 +1,6 @@
 package Logica;
 
+import Dominio.Estudiante;
 import Dominio.Usuario;
 
 public interface Sistema {

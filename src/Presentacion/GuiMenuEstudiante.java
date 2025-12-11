@@ -6,12 +6,13 @@ import javax.swing.JFrame;
 
 import Dominio.Estudiante;
 import Dominio.SistemaImpl;
+import Dominio.Usuario;
 
 public class GuiMenuEstudiante extends JFrame{
 	
 	SistemaImpl sistema = SistemaImpl.InstanciarSistemaImpl();
 	
-	 public GuiMenuEstudiante(Estudiante estudiante) {
+	 public GuiMenuEstudiante(Usuario estudiante) {
 	        setTitle("Menú Estudiante");
 	        setSize(400, 300);
 	        setLayout(new GridLayout(3, 1));

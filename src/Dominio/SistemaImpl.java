@@ -40,7 +40,10 @@ public class SistemaImpl implements Sistema {
 	@Override
 	public void lectura_Estudiante(String rut, String nombre, String carrera, int numSemestre, String correo,
 			String contraseña) {
-		estudiantes.add(factory.crear_Estudiante(rut, nombre, carrera, numSemestre, correo, contraseña));
+		Estudiante u = factory.crear_Estudiante(rut, nombre, carrera, numSemestre, correo, contraseña);
+		estudiantes.add(u);
+		usuarios.add(u);
+		
 
 	}
 
@@ -85,14 +88,14 @@ public class SistemaImpl implements Sistema {
 
 	@Override
 	public Usuario validacion(String nombre, String contraseña) {
-		new GuiPrincipal().setVisible(true);
 	    for (Usuario u : usuarios) {
-	        if (u.nombre.equals(nombre) && u.contraseña.equals(contraseña)) {
+	        if (u.identificacion.equals(nombre) && u.contraseña.equals(contraseña)) {
 	            return u;
 	        }
 	    }
 	    return null;
 	}
+	
 	
 
 	@Override

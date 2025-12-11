@@ -17,10 +17,13 @@ public class Factory {
 
 	public Usuario crear_Usuario(String nombre, String contraseña, String rol, String infoAdicional) {
 
-		Usuario u = new Usuario(nombre, contraseña, rol);
+		Usuario u = null;
+		if (nombre.split("\\.").length == 2) {
+			u = new Coordinador(nombre, contraseña, rol, infoAdicional);
 
-		if (nombre.split(".").length == 2) {
-			u.setInforAdicional(infoAdicional);
+		}else {
+			u = new Admin(nombre, contraseña, rol);
+
 		}
 
 		return u;
@@ -42,7 +45,7 @@ public class Factory {
 
 	public Estudiante crear_Estudiante(String rut, String nombre, String carrera, int numSemestre, String correo,
 			String contraseña) {
-		Estudiante e = new Estudiante(rut, nombre, carrera, numSemestre, correo, contraseña);
+		Estudiante e = new Estudiante(rut, contraseña, "Estudiante", nombre, carrera, numSemestre, correo);
 		return e;
 	}
 
@@ -59,7 +62,7 @@ public class Factory {
 
 		for (Estudiante e : estudiantes) {
 
-			if (e.rut.equals(estudiante)) {
+			if (e.identificacion.equals(estudiante)) {
 				estudianteBuscado = e;
 			}
 		}
@@ -88,7 +91,7 @@ public class Factory {
 
 		for (Estudiante e : estudiantes) {
 
-			if (e.rut.equals(estudiante)) {
+			if (e.identificacion.equals(estudiante)) {
 				estudianteBuscado = e;
 
 			}

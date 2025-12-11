@@ -1,12 +1,12 @@
 package Dominio;
 public class Registro {
-	protected Estudiante estudiante;
+	protected Usuario estudiante;
 	protected Certificacion certificacion;
 	protected String fecha;
 	protected String estado;
 	protected String progreso;
 	
-	public Registro(Estudiante estudiante, Certificacion certificacion, String fecha, String estado, String progreso) {
+	public Registro(Usuario estudiante, Certificacion certificacion, String fecha, String estado, String progreso) {
 		super();
 		this.estudiante = estudiante;
 		this.certificacion = certificacion;
@@ -15,7 +15,7 @@ public class Registro {
 		this.progreso = progreso;
 	}
 	
-	public void setEstudiante(Estudiante estudiante) {
+	public void setEstudiante(Usuario estudiante) {
 		this.estudiante = estudiante;
 	}
 	public void setCertificacion(Certificacion certificacion) {

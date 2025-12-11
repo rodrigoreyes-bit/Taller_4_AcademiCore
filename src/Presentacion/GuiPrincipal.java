@@ -50,21 +50,21 @@ public class GuiPrincipal extends JFrame{
 
 	    SistemaImpl sistema = SistemaImpl.InstanciarSistemaImpl();
 	    Usuario u = sistema.validacion(user, pass);
-
 	    if (u == null) {
 	        JOptionPane.showMessageDialog(this, "Credenciales incorrectas");
 	        return;
 	    }
-
-	    // si es admin
-	    if (u.getRol().equalsIgnoreCase("Admin")) {
+	    switch(u.getRol()) {
+	    case "Admin":
 	        new GuiMenuAdmin().setVisible(true);
 	        return;
+	    case "Coordinador":
+	    	break;
+	    case "Estudiante":
+		    new GuiMenuEstudiante(u).setVisible(true);
+	    	return;
 	    }
 	    
-	    if (u.getRol().equals("Coordinador")) {
-	    	//gui coordinador
-	    }
 
 	    // hacer la logica si es estudiante
 	    //if 

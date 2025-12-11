@@ -1,24 +1,24 @@
 package Dominio;
 import java.util.ArrayList;
-public class Estudiante {
-	protected String rut;
+
+public class Estudiante extends Usuario{
 	protected String nombre;
 	protected String carrera;
 	protected int numSemestre;
 	protected String correo;
-	protected String contraseña;
 	protected ArrayList<Certificacion> certificaciones = new ArrayList<>();
 	protected ArrayList<Notas> notas = new ArrayList<>();
 	
-	public Estudiante(String rut, String nombre, String carrera, int numSemestre, String correo, String contraseña) {
-		super();
-		this.rut = rut;
+	public Estudiante(String identificacion, String contraseña, String rol, String nombre, String carrera,
+			int numSemestre, String correo) {
+		super(identificacion, contraseña, rol);
 		this.nombre = nombre;
 		this.carrera = carrera;
 		this.numSemestre = numSemestre;
 		this.correo = correo;
-		this.contraseña = contraseña;
+		
 	}
+
 	
 	public void añadirCertificaciones(Certificacion c) {
 		this.certificaciones.add(c);
@@ -29,9 +29,6 @@ public class Estudiante {
 		
 	}
 
-	public String getRut() {
-		return rut;
-	}
 
 	public String getNombre() {
 		return nombre;
