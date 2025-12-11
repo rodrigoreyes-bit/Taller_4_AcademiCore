@@ -89,7 +89,7 @@ El proyecto sigue una arquitectura de 3 capas claramente separada en paquetes: *
     | :--- | :--- | :--- |
     | **Administrador** | `admin` | `admin123` |
     | **Coordinador** | `coord.is` | `coord123` |
-    | **Estudiante** | `Juan Carlos Pérez López`) | `12345678` |
+    | **Estudiante** | `Juan Carlos Pérez López` | `12345678` |
 
 ---
 
