@@ -30,7 +30,6 @@ public class App {
 		sistema.login();
 	}
 	
-
 	private static void lecturaAsignaturas_Certificaciones() throws FileNotFoundException {
 		File file = new File("asignaturas_certificaciones.txt");
 		archivo = new Scanner(file);
@@ -46,6 +45,8 @@ public class App {
 		while (archivo.hasNextLine()) {
 			String[] lista = archivo.nextLine().split(";");
 			sistema.lectura_Notas(lista[0], lista[1], Double.valueOf(lista[2]), lista[3], lista[4]);
+			
+			
 		}
 	}
 
@@ -89,10 +90,8 @@ public class App {
 		File file = new File("estudiantes.txt");
 		archivo = new Scanner(file);
 		while (archivo.hasNextLine()) {
-			String[] lista = archivo.nextLine().split(";");
-			
-			sistema.lectura_Estudiante(lista[0], lista[1], lista[2], Integer.valueOf(lista[3]), lista[4], lista[5]);
-
+			String[] partes = archivo.nextLine().split(";");
+			sistema.lectura_Estudiante(partes);
 		}
 	}
 
@@ -101,21 +100,8 @@ public class App {
 		archivo = new Scanner(file);
 		while (archivo.hasNextLine()) {
 
-			String[] lista = archivo.nextLine().split(";");
-
-			switch (lista[0].split("\\.").length) {
-
-			case 1:
-				sistema.lectura_Usuario(lista[0], lista[1], lista[2], null);
-				break;
-			case 2:
-				sistema.lectura_Usuario(lista[0], lista[1], lista[2], lista[3]);
-				break;
-
-			}
-
+			String[] partes = archivo.nextLine().split(";");
+			sistema.lectura_Usuario(partes);
 		}
-
 	}
-
 }

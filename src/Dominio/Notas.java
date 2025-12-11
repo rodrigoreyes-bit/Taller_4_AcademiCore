@@ -7,7 +7,6 @@ public class Notas {
 	protected String semestre;
 	
 	public Notas(Estudiante estudiante, Curso curso, double calificacion, String estado, String semestre) {
-		super();
 		this.estudiante = estudiante;
 		this.curso = curso;
 		this.calificacion = calificacion;

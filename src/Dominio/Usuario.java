@@ -1,20 +1,20 @@
 package Dominio;
 public abstract class Usuario {
-	protected String identificacion;
+	protected String username;
 	protected String contraseña;
 	protected String rol;
 	
-	public Usuario(String identificacion, String contraseña, String rol) {
+	public Usuario(String username, String contraseña, String rol) {
 		super();
-		this.identificacion = identificacion;
+		this.username = username;
 		this.contraseña = contraseña;
 		this.rol = rol;
 	}
 	public String getIdentificacion() {
-		return identificacion;
+		return username;
 	}
 	public void setIdentificacion(String identificacion) {
-		this.identificacion = identificacion;
+		this.username = identificacion;
 	}
 	public String getContraseña() {
 		return contraseña;
@@ -28,6 +28,4 @@ public abstract class Usuario {
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
-	
-	
 }

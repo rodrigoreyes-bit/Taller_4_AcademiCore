@@ -27,8 +27,8 @@ public class SistemaImpl implements Sistema {
 	
 
 	@Override
-	public void lectura_Usuario(String nombre, String contraseña, String rol, String infoAdicional) {
-		usuarios.add(factory.crear_Usuario(nombre, contraseña, rol, infoAdicional));
+	public void lectura_Usuario(String [] partes) {
+		usuarios.add(factory.crear_Usuario(partes));
 	}
 
 	@Override
@@ -38,13 +38,10 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void lectura_Estudiante(String rut, String nombre, String carrera, int numSemestre, String correo,
-			String contraseña) {
-		Estudiante u = factory.crear_Estudiante(rut, nombre, carrera, numSemestre, correo, contraseña);
+	public void lectura_Estudiante(String [] partes) {
+		Estudiante u = factory.crear_Estudiante(partes);
 		estudiantes.add(u);
 		usuarios.add(u);
-		
-
 	}
 
 	@Override
@@ -61,8 +58,8 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void lectura_Notas(String estudiante, String curso, double calificacion, String estado, String semestre) {
-		notas.add(factory.crear_Notas(estudiantes, cursos, estudiante, curso, calificacion, estado, semestre));
+	public void lectura_Notas(String rut, String codigoAsignatura, double calificacion, String estado, String semestre) {
+		notas.add(factory.crear_Notas(estudiantes, cursos, rut, codigoAsignatura, calificacion, estado, semestre));
 	}
 
 	@Override
@@ -89,7 +86,7 @@ public class SistemaImpl implements Sistema {
 	@Override
 	public Usuario validacion(String nombre, String contraseña) {
 	    for (Usuario u : usuarios) {
-	        if (u.identificacion.equals(nombre) && u.contraseña.equals(contraseña)) {
+	        if (u.username.equals(nombre) && u.contraseña.equals(contraseña)) {
 	            return u;
 	        }
 	    }

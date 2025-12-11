@@ -15,19 +15,22 @@ public class Factory {
 		return Instancia_Unica;
 	}
 
-	public Usuario crear_Usuario(String nombre, String contraseña, String rol, String infoAdicional) {
-
-		Usuario u = null;
-		if (nombre.split("\\.").length == 2) {
-			u = new Coordinador(nombre, contraseña, rol, infoAdicional);
-
-		}else {
-			u = new Admin(nombre, contraseña, rol);
-
+	public Usuario crear_Usuario(String [] partes) {
+		String username = partes[0];
+		String contraseña = partes[1];
+		String rol = partes[2];
+		
+		switch(rol) {
+		case "Administrador":
+			Admin a = new Admin(username, contraseña, rol);
+			return a;
+			
+		case "Coordinador":
+			String infoExtra = partes[3];
+			Coordinador c = new Coordinador(username, contraseña, rol, infoExtra);
+			return c;
 		}
-
-		return u;
-
+		return null;
 	}
 
 	public Curso crear_Curso(String NCR, String nombre, int numSemestre, int cantCreditos, String area,
@@ -43,9 +46,15 @@ public class Factory {
 		return c;
 	}
 
-	public Estudiante crear_Estudiante(String rut, String nombre, String carrera, int numSemestre, String correo,
-			String contraseña) {
-		Estudiante e = new Estudiante(rut, contraseña, "Estudiante", nombre, carrera, numSemestre, correo);
+	public Estudiante crear_Estudiante(String [] partes) {
+		String rut = partes[0];
+		String nombre = partes[1];
+		String carrera = partes[2];
+		int semestre = Integer.valueOf(partes[3]);
+		String correo = partes[4];
+		String contraseña = partes[5];
+		
+		Estudiante e = new Estudiante(nombre, contraseña, "Estudiante", rut, nombre, carrera, semestre, correo);
 		return e;
 	}
 
@@ -57,12 +66,13 @@ public class Factory {
 
 	public Registro crear_Registro(ArrayList<Estudiante> estudiantes, ArrayList<Certificacion> certificaciones,
 			String estudiante, String certificacion, String fecha, String estado, String progreso) {
+		
 		Estudiante estudianteBuscado = null;
 		Certificacion certificadoBuscado = null;
 
 		for (Estudiante e : estudiantes) {
 
-			if (e.identificacion.equals(estudiante)) {
+			if (e.rut.equals(estudiante)) {
 				estudianteBuscado = e;
 			}
 		}
@@ -84,20 +94,20 @@ public class Factory {
 
 	}
 
-	public Notas crear_Notas(ArrayList<Estudiante> estudiantes, ArrayList<Curso> cursos, String estudiante,
-			String curso, double calificacion, String estado, String semestre) {
+	public Notas crear_Notas(ArrayList<Estudiante> estudiantes, ArrayList<Curso> cursos, String rut,
+			String codigoAsignatura, double calificacion, String estado, String semestre) {
+		
 		Estudiante estudianteBuscado = null;
 		Curso cursoBuscado = null;
 
 		for (Estudiante e : estudiantes) {
 
-			if (e.identificacion.equals(estudiante)) {
+			if (e.rut.equals(rut)) {
 				estudianteBuscado = e;
-
 			}
 		}
 		for (Curso c : cursos) {
-			if (c.NRC.equals(curso)) {
+			if (c.NRC.equals(codigoAsignatura)) {
 				cursoBuscado = c;
 			}
 		}
