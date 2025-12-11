@@ -29,7 +29,8 @@ public class Factory {
 	public Curso crear_Curso(String NCR, String nombre, int numSemestre, int cantCreditos, String area,
 			String requisito) {
 		Curso c = new Curso(NCR, nombre, numSemestre, cantCreditos, area);
-		if (!(requisito.equals(null))) {
+		if (requisito != null) {
+			
 			String[] listaIDS = requisito.split(",");
 			for (int i = 0; i < listaIDS.length; i++) {
 				c.añadirRequisito(listaIDS[i]);

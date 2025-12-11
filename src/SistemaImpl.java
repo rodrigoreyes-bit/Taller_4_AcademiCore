@@ -59,7 +59,23 @@ public class SistemaImpl implements Sistema {
 
 	@Override
 	public void asignacion_Certificacion(String id, String nrc) {
-		// TODO Auto-generated method stub
+		Certificacion certificadoBuscado = null;
+		Curso cursoBuscado = null;
+		for (Certificacion c : certificaciones) {
+			if (c.getId().equals(id)) {
+				certificadoBuscado = c;
+			}
+		}
+		for (Curso c : cursos) {
+			if (c.getNRC().equals(nrc)) {
+				cursoBuscado = c;
+			}
+		}
+		if (certificadoBuscado == null || cursoBuscado == null) {
+			System.out.println("Error asignacion");
+			;
+		}
+		cursoBuscado.setCertificacion(certificadoBuscado);
 
 	}
 
