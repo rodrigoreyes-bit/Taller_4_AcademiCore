@@ -1,4 +1,5 @@
 package Dominio;
+
 public abstract class Usuario {
 	protected String username;
 	protected String contraseña;
