@@ -21,6 +21,7 @@
 
 ## 👥 Integrantes
 | **Ninibeth Pérez Cortés** | 21.787.686-9 | ICCI | `papaFritaUwU` | 
+
 | **Rodrigo Reyes Alfaro** | 22.123.808-7 | ICCI | `rodrigoreyes-bit` |
 
 ---
