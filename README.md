@@ -61,12 +61,12 @@ El proyecto sigue una arquitectura de 3 capas claramente separada en paquetes: *
 
 ## 🎨 Patrones de Diseño Implementados
 
-| Patrón | Propósito en AcademiCore | Capa / Clase |
-| :--- | :--- | :--- |
-| **Singleton** | Asegura una única instancia centralizada de la lógica de negocio y colecciones de datos del sistema. | `logica.AcademiCore` |
-| **Factory** | Usado para crear instancias correctas de `Usuario` (Admin, Coordinador, Estudiante) al cargar los archivos. | `persistencia.DataFactory` (o `UsuarioFactory`) |
-| **Strategy** | Permite intercambiar algoritmos de análisis para el Coordinador (ej. *Análisis de Asignaturas Críticas*, *Estadísticas de Inscripción*). | `util.IAnalisisStrategy` |
-| **Visitor** | Permite aplicar operaciones complejas de seguimiento de progreso y requisitos de créditos sobre la estructura de `Certificacion` sin modificar las clases. | `util.ICertificacionVisitor` |
+| Patrón | Propósito en AcademiCore 
+| :--- | :--- |
+| **Singleton** | Asegura una única instancia centralizada de la lógica de negocio y colecciones de datos del sistema. |
+| **Factory** | Usado para crear instancias correctas de `Usuario` (Admin, Coordinador, Estudiante) al cargar los archivos. |
+| **Strategy** | Permite intercambiar algoritmos de análisis para el Coordinador (ej. *Análisis de Asignaturas Críticas*, *Estadísticas de Inscripción*). |
+| **Visitor** | Permite aplicar operaciones complejas de seguimiento de progreso y requisitos de créditos sobre la estructura de `Certificacion` sin modificar las clases. |
 
 ---
 
