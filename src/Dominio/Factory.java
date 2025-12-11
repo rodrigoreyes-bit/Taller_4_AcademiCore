@@ -1,6 +1,7 @@
 package Dominio;
 import java.util.ArrayList;
 
+
 public class Factory {
 
 	private static Factory Instancia_Unica;
@@ -21,7 +22,7 @@ public class Factory {
 		String rol = partes[2];
 		
 		switch(rol) {
-		case "Administrador":
+		case "Admin":
 			Admin a = new Admin(username, contraseña, rol);
 			return a;
 			
@@ -54,7 +55,7 @@ public class Factory {
 		String correo = partes[4];
 		String contraseña = partes[5];
 		
-		Estudiante e = new Estudiante(nombre, contraseña, "Estudiante", rut, nombre, carrera, semestre, correo);
+		Estudiante e = new Estudiante(rut, contraseña, "Estudiante", nombre, carrera, semestre, correo);
 		return e;
 	}
 
@@ -72,7 +73,7 @@ public class Factory {
 
 		for (Estudiante e : estudiantes) {
 
-			if (e.rut.equals(estudiante)) {
+			if (e.username.equals(estudiante)) {
 				estudianteBuscado = e;
 			}
 		}
@@ -102,7 +103,7 @@ public class Factory {
 
 		for (Estudiante e : estudiantes) {
 
-			if (e.rut.equals(rut)) {
+			if (e.username.equals(rut)) {
 				estudianteBuscado = e;
 			}
 		}
