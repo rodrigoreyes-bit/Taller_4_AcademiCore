@@ -16,7 +16,7 @@ public class GuiMenuEstudiante extends JFrame{
 	        setTitle("Menú Estudiante");
 	        setSize(400, 300);
 	        setLayout(new GridLayout(3, 1));
-
+			//hola
 	        JButton btnProgreso = new JButton("Ver progreso en certificaciones");
 	        JButton btnCursos = new JButton("Ver cursos aprobados");
 	        JButton btnCerrar = new JButton("Cerrar sesión");
