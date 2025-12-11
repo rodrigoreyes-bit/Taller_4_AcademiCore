@@ -93,10 +93,12 @@ public class SistemaImpl implements Sistema {
 	    }
 	    return null;
 	}
+	
 
 	@Override
 	public void login() {
-		// TODO Auto-generated method stub
+		GuiPrincipal principal = new GuiPrincipal();
+		principal.setVisible(true);
 		
 	}
 

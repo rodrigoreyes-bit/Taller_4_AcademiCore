@@ -39,8 +39,9 @@ public class GuiPrincipal extends JFrame{
         panel.add(btnLogin);
 
         add(panel);
-
+        
         btnLogin.addActionListener(e -> login());
+        
     }
 
     private void login() {
@@ -56,7 +57,7 @@ public class GuiPrincipal extends JFrame{
 	    }
 
 	    // si es admin
-	    if (u.getRol().equalsIgnoreCase("Aministrador")) {
+	    if (u.getRol().equalsIgnoreCase("Admin")) {
 	        new GuiMenuAdmin().setVisible(true);
 	        return;
 	    }
