@@ -10,6 +10,7 @@ public interface Sistema {
 	public void lectura_Notas(String estudiante, String curso, double calificacion, String estado, String semestre);
 	public void asignacion_Certificacion(String id,String nrc);
 	
+	public void login();
 	//Admin
 	//public String 
 	

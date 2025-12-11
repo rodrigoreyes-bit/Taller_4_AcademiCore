@@ -2,6 +2,7 @@ package Dominio;
 import java.util.ArrayList;
 
 import Logica.Sistema;
+import Presentacion.GuiPrincipal;
 
 public class SistemaImpl implements Sistema {
 	public ArrayList<Usuario> usuarios = new ArrayList<>();
@@ -80,5 +81,15 @@ public class SistemaImpl implements Sistema {
 			;
 		}
 		cursoBuscado.setCertificacion(certificadoBuscado);
+	}
+
+	@Override
+	public void login() {
+		new GuiPrincipal().setVisible(true);
+		
+		// hacer sistema de login
+		//si es estudiante
+		//new 
+		
 	}
 }
