@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Dominio.Estudiante;
 import Dominio.SistemaImpl;
 import Dominio.Usuario;
 
@@ -43,17 +44,30 @@ public class GuiPrincipal extends JFrame{
     }
 
     private void login() {
-        String user = txtUser.getText();
-        String pass = new String(txtPass.getPassword());
+	    String user = txtUser.getText();
+	    String pass = new String(txtPass.getPassword());
 
-        SistemaImpl sistema = SistemaImpl.InstanciarSistemaImpl();
-        Usuario u = null; //sistema.validarUsuario(user, pass);
+	    SistemaImpl sistema = SistemaImpl.InstanciarSistemaImpl();
+	    Usuario u = sistema.validacion(user, pass);
 
-        if (u == null) {
-            JOptionPane.showMessageDialog(this, "Credenciales incorrectas");
-            return;
-        }
-        
-        //funcion mostrar menu
-    }
+	    if (u == null) {
+	        JOptionPane.showMessageDialog(this, "Credenciales incorrectas");
+	        return;
+	    }
+
+	    // si es admin
+	    if (u.getRol().equalsIgnoreCase("Aministrador")) {
+	        new GuiMenuAdmin().setVisible(true);
+	        return;
+	    }
+	    
+	    if (u.getRol().equals("Coordinador")) {
+	    	//gui coordinador
+	    }
+
+	    // hacer la logica si es estudiante
+	    //if 
+	    //new GuiMenuEstudiante(e).setVisible(true);
+	    // return
+	}
 }

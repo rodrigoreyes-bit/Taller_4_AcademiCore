@@ -84,12 +84,21 @@ public class SistemaImpl implements Sistema {
 	}
 
 	@Override
-	public void login() {
+	public Usuario validacion(String nombre, String contraseña) {
 		new GuiPrincipal().setVisible(true);
-		
-		// hacer sistema de login
-		//si es estudiante
-		//new 
+	    for (Usuario u : usuarios) {
+	        if (u.nombre.equals(nombre) && u.contraseña.equals(contraseña)) {
+	            return u;
+	        }
+	    }
+	    return null;
+	}
+
+	@Override
+	public void login() {
+		// TODO Auto-generated method stub
 		
 	}
+
+
 }

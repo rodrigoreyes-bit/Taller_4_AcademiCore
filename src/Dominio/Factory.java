@@ -59,13 +59,12 @@ public class Factory {
 
 		for (Estudiante e : estudiantes) {
 
-			if (e.getRut().equals(estudiante)) {
+			if (e.rut.equals(estudiante)) {
 				estudianteBuscado = e;
-
 			}
 		}
 		for (Certificacion c : certificaciones) {
-			if (c.getId().equals(certificacion)) {
+			if (c.id.equals(certificacion)) {
 				certificadoBuscado = c;
 			}
 		}
@@ -89,13 +88,13 @@ public class Factory {
 
 		for (Estudiante e : estudiantes) {
 
-			if (e.getRut().equals(estudiante)) {
+			if (e.rut.equals(estudiante)) {
 				estudianteBuscado = e;
 
 			}
 		}
 		for (Curso c : cursos) {
-			if (c.getNRC().equals(curso)) {
+			if (c.NRC.equals(curso)) {
 				cursoBuscado = c;
 			}
 		}
@@ -107,8 +106,6 @@ public class Factory {
 		Notas n = new Notas(estudianteBuscado, cursoBuscado, calificacion, estado, semestre);
 		estudianteBuscado.añadirNota(n);
 		cursoBuscado.añadirNota(n);
-		
-		
 		return n;
 	}
 

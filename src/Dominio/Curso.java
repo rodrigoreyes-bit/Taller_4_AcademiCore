@@ -28,8 +28,6 @@ public class Curso {
 		
 	}
 
-	// Source
-
 	public String getNRC() {
 		return NRC;
 	}
@@ -86,4 +84,9 @@ public class Curso {
 		this.certificacion = certificacion;
 	}
 
+	public ArrayList<Notas> getNotas() {
+		return notas;
+	}
+	
+	
 }

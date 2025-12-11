@@ -11,7 +11,6 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import Dominio.SistemaImpl;
-import Dominio.Usuario;
 
 public class App {
 	public static Scanner consola = new Scanner(System.in);

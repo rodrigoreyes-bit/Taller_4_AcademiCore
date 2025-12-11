@@ -28,65 +28,38 @@ public class Estudiante {
 		this.notas.add(n);
 		
 	}
-	//Source
 
 	public String getRut() {
 		return rut;
-	}
-
-	public void setRut(String rut) {
-		this.rut = rut;
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	public String getCarrera() {
 		return carrera;
-	}
-
-	public void setCarrera(String carrera) {
-		this.carrera = carrera;
 	}
 
 	public int getNumSemestre() {
 		return numSemestre;
 	}
 
-	public void setNumSemestre(int numSemestre) {
-		this.numSemestre = numSemestre;
-	}
-
 	public String getCorreo() {
 		return correo;
-	}
-
-	public void setCorreo(String correo) {
-		this.correo = correo;
 	}
 
 	public String getContraseña() {
 		return contraseña;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public ArrayList<Certificacion> getCertificaciones() {
+		return certificaciones;
 	}
 
-	@Override
-	public String toString() {
-		return "Estudiante [rut=" + rut + ", nombre=" + nombre + ", carrera=" + carrera + ", numSemestre=" + numSemestre
-				+ ", correo=" + correo + ", contraseña=" + contraseña + "]";
+	public ArrayList<Notas> getNotas() {
+		return notas;
 	}
-	
-	
-	
-	
 	
 	
 }

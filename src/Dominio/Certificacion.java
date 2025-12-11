@@ -71,10 +71,4 @@ public class Certificacion {
 		this.cursosRelacionados = cursosRelacionados;
 	}
 
-	@Override
-	public String toString() {
-		return "Certificacion [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", requisitos="
-				+ requisitos + ", validez=" + validez + "]";
-	}
-
 }

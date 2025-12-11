@@ -1,5 +1,7 @@
 package Logica;
 
+import Dominio.Usuario;
+
 public interface Sistema {
 	
 	public void lectura_Usuario(String nombre, String contraseña, String rol, String infoAdicional);
@@ -10,14 +12,7 @@ public interface Sistema {
 	public void lectura_Notas(String estudiante, String curso, double calificacion, String estado, String semestre);
 	public void asignacion_Certificacion(String id,String nrc);
 	
+	public Usuario validacion(String nombre, String contraseña);
 	public void login();
-	//Admin
-	//public String 
-	
-	
-	
-	
-	
-	
 	
 }
