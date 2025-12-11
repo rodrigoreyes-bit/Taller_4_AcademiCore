@@ -7,11 +7,11 @@ public class App {
 	public static void main(String[] args) {
 		//Lectura de Archivos
 		lecturaUsuarios();
-		lecturaRegistros();
-		lecturaNotas();
 		lecturaEstudiantes();
 		lecturaCursos();
 		lecturaCertificaciones();
+		lecturaRegistros();
+		lecturaNotas();
 		lecturaAsignaturas_Certificaciones();
 		
 		
