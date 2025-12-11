@@ -1,8 +1,8 @@
 package Dominio;
 import java.util.ArrayList;
 
+
 public class Estudiante extends Usuario{
-	protected String rut;
 	protected String nombre;
 	protected String carrera;
 	protected int numSemestre;
@@ -11,10 +11,9 @@ public class Estudiante extends Usuario{
 	protected ArrayList<Certificacion> certificaciones = new ArrayList<>();
 	protected ArrayList<Notas> notas = new ArrayList<>();
 	
-	public Estudiante(String username, String contraseña, String rol, String rut, String nombre, String carrera,
+	public Estudiante(String username, String contraseña, String rol, String nombre, String carrera,
 			int numSemestre, String correo) {
 		super(username, contraseña, rol);
-		this.rut = rut;
 		this.nombre = nombre;
 		this.carrera = carrera;
 		this.numSemestre = numSemestre;
