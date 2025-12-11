@@ -1,35 +1,51 @@
 package Presentacion;
 import java.awt.GridLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
+import javax.swing.JOptionPane;
 import Dominio.Estudiante;
-import Dominio.SistemaImpl;
-import Dominio.Usuario;
 
-public class GuiMenuEstudiante extends JFrame{
+public class GuiMenuEstudiante extends JFrame {
 	
-	SistemaImpl sistema = SistemaImpl.InstanciarSistemaImpl();
 	
-	 public GuiMenuEstudiante(Usuario estudiante) {
-	        setTitle("Menú Estudiante");
-	        setSize(400, 300);
-	        setLayout(new GridLayout(3, 1));
-			//hola
-	        JButton btnProgreso = new JButton("Ver progreso en certificaciones");
-	        JButton btnCursos = new JButton("Ver cursos aprobados");
-	        JButton btnCerrar = new JButton("Cerrar sesión");
+	 public GuiMenuEstudiante(Estudiante estudiante) {
+		 
+	    setTitle("Menú Estudiante - " + estudiante.getNombre());
+	    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	    setSize(450, 400);
+	    setLayout(new GridLayout(5, 1, 10, 10)); 
 
-	        add(btnProgreso);
-	        add(btnCursos);
-	        add(btnCerrar);
+	    JButton btnPerfilMalla = new JButton("Perfil y Malla Curricular");
+	    
+	    JButton btnInscripcion = new JButton("Inscripción a Certificaciones");
+	    
+	    JButton btnProgreso = new JButton("Seguimiento de Progreso");
+	    
+	    JButton btnCerrar = new JButton("Cerrar Sesión");
+
+	    add(btnPerfilMalla);
+	    add(btnInscripcion);
+	    add(btnProgreso);
+	    add(new JButton("Funcionalidad Pendiente"));
+	    add(btnCerrar);
 	        
-	        //btnProgreso.addActionListener(e -> sistema.);
-	        //btnCursos.addActionListener(e -> sistema.);
-	        
-	        btnCerrar.addActionListener(e -> {
-	        new GuiPrincipal().setVisible(true);
-	        });
-	    }
+	    btnPerfilMalla.addActionListener(e -> {
+	        new GuiPerfil(estudiante).setVisible(true);
+	    });
+	    
+	    btnInscripcion.addActionListener(e -> {
+	    	new GuiCertificaciones(estudiante).setVisible(true);
+	    });
+	    
+	    btnProgreso.addActionListener(e -> {
+	    	new GuiSeguimiento(estudiante).setVisible(true);
+	    });
+	    
+	    btnCerrar.addActionListener(e -> {
+	        dispose(); 
+	        new GuiPrincipal().setVisible(true); 
+	    });
+	    
+	    setLocationRelativeTo(null); 
+	}
 }
