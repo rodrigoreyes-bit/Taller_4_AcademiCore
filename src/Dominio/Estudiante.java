@@ -58,6 +58,4 @@ public class Estudiante extends Usuario{
 	public ArrayList<Notas> getNotas() {
 		return notas;
 	}
-	
-	
 }

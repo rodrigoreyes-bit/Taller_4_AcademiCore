@@ -52,9 +52,7 @@ public class SistemaImpl implements Sistema {
 	@Override
 	public void lectura_Registro(String estudiante, String certificacion, String fecha, String estado,
 			String progreso) {
-		
 		registros.add(factory.crear_Registro(estudiantes, certificaciones, estudiante, certificacion, fecha, estado, progreso));
-
 	}
 
 	@Override
@@ -78,7 +76,6 @@ public class SistemaImpl implements Sistema {
 		}
 		if (certificadoBuscado == null || cursoBuscado == null) {
 			System.out.println("Error asignacion");
-			;
 		}
 		cursoBuscado.setCertificacion(certificadoBuscado);
 	}
@@ -93,14 +90,30 @@ public class SistemaImpl implements Sistema {
 	    return null;
 	}
 	
-	
-
 	@Override
 	public void login() {
 		GuiPrincipal principal = new GuiPrincipal();
 		principal.setVisible(true);
-		
 	}
 
+	public ArrayList<Curso> getCursos() {
+		return cursos;
+	}
 
+	public ArrayList<Certificacion> getCertificaciones() {
+		return certificaciones;
+	}
+	
+	public Certificacion buscarCertificacion(String id) {
+	    if (certificaciones == null || certificaciones.isEmpty()) {
+	        return null;
+	    }
+
+	    for (Certificacion c : certificaciones) {
+	        if (c.id.equals(id)) {
+	            return c;
+	        }
+	    }
+	    return null;
+	}
 }

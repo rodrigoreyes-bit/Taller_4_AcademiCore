@@ -2,11 +2,11 @@ package Dominio;
 import java.util.ArrayList;
 
 public class Curso {
-	protected String NRC;
-	protected String nombre;
-	protected int numSemestre;
-	protected int cantCreditos;
-	protected String area;
+	public String NRC;
+	public String nombre;
+	public int numSemestre;
+	public int cantCreditos;
+	public String area;
 	protected ArrayList<String> requisitos = new ArrayList<>();
 	protected ArrayList<Notas> notas = new ArrayList<>();
 	protected Certificacion certificacion;

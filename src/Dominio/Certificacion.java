@@ -2,13 +2,13 @@ package Dominio;
 import java.util.ArrayList;
 
 public class Certificacion {
-	protected String id;
-	protected String nombre;
-	protected String descripcion;
-	protected int requisitos;
-	protected String validez;
-	protected ArrayList<Curso> cursosRelacionados = new ArrayList<>();
-	protected ArrayList<Estudiante> estudiantesInscritos = new ArrayList<>();
+	public String id;
+	public String nombre;
+	public String descripcion;
+	public int requisitos;
+	public String validez;
+	public ArrayList<Curso> cursosRelacionados = new ArrayList<>();
+	public ArrayList<Estudiante> estudiantesInscritos = new ArrayList<>();
 
 	public Certificacion(String id, String nombre, String descripcion, int requisitos, String validez) {
 		super();

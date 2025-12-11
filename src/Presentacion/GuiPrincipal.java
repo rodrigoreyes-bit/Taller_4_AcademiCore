@@ -59,16 +59,11 @@ public class GuiPrincipal extends JFrame{
 	        new GuiMenuAdmin().setVisible(true);
 	        return;
 	    case "Coordinador":
-	    	break;
+	        new GuiMenuCoordinador(u).setVisible(true);
+	        return;
 	    case "Estudiante":
 		    new GuiMenuEstudiante(u).setVisible(true);
 	    	return;
 	    }
-	    
-
-	    // hacer la logica si es estudiante
-	    //if 
-	    //new GuiMenuEstudiante(e).setVisible(true);
-	    // return
 	}
 }
