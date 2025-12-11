@@ -1,3 +1,4 @@
+package Logica;
 
 public interface Sistema {
 	
@@ -9,7 +10,8 @@ public interface Sistema {
 	public void lectura_Notas(String estudiante, String curso, double calificacion, String estado, String semestre);
 	public void asignacion_Certificacion(String id,String nrc);
 	
-	
+	//Admin
+	//public String 
 	
 	
 	

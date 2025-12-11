@@ -1,10 +1,11 @@
-
+package Dominio;
 public class Registro {
-	private Estudiante estudiante;
-	private Certificacion certificacion;
-	private String fecha;
-	private String estado;
-	private String progreso;
+	protected Estudiante estudiante;
+	protected Certificacion certificacion;
+	protected String fecha;
+	protected String estado;
+	protected String progreso;
+	
 	public Registro(Estudiante estudiante, Certificacion certificacion, String fecha, String estado, String progreso) {
 		super();
 		this.estudiante = estudiante;

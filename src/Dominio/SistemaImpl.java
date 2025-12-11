@@ -1,4 +1,7 @@
+package Dominio;
 import java.util.ArrayList;
+
+import Logica.Sistema;
 
 public class SistemaImpl implements Sistema {
 	public ArrayList<Usuario> usuarios = new ArrayList<>();
@@ -8,6 +11,7 @@ public class SistemaImpl implements Sistema {
 	public ArrayList<Registro> registros = new ArrayList<>();
 	public ArrayList<Notas> notas = new ArrayList<>();
 	public Factory factory = Factory.InstanciarFactory();
+	
 	private static SistemaImpl Instancia_Unica;
 	
 	private SistemaImpl() {
@@ -76,7 +80,5 @@ public class SistemaImpl implements Sistema {
 			;
 		}
 		cursoBuscado.setCertificacion(certificadoBuscado);
-
 	}
-
 }

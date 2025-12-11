@@ -1,3 +1,4 @@
+package Dominio;
 import java.util.ArrayList;
 
 public class Factory {
@@ -35,11 +36,8 @@ public class Factory {
 			for (int i = 0; i < listaIDS.length; i++) {
 				c.añadirRequisito(listaIDS[i]);
 			}
-
 		}
-
 		return c;
-
 	}
 
 	public Estudiante crear_Estudiante(String rut, String nombre, String carrera, int numSemestre, String correo,

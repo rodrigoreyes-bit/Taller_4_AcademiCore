@@ -1,9 +1,11 @@
+package Dominio;
+
 
 public class Usuario {
-	private String nombre;
-	private String contraseña;
-	private String rol;
-	private String infoAdicional;
+	protected String nombre;
+	protected String contraseña;
+	protected String rol;
+	protected String infoAdicional;
 	
 	public Usuario(String nombre, String contraseña, String rol) {
 		super();

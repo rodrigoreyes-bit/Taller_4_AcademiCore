@@ -1,13 +1,14 @@
+package Dominio;
 import java.util.ArrayList;
 public class Estudiante {
-	private String rut;
-	private String nombre;
-	private String carrera;
-	private int numSemestre;
-	private String correo;
-	private String contraseña;
-	private ArrayList<Certificacion> certificaciones = new ArrayList<>();
-	private ArrayList<Notas> notas = new ArrayList<>();
+	protected String rut;
+	protected String nombre;
+	protected String carrera;
+	protected int numSemestre;
+	protected String correo;
+	protected String contraseña;
+	protected ArrayList<Certificacion> certificaciones = new ArrayList<>();
+	protected ArrayList<Notas> notas = new ArrayList<>();
 	
 	public Estudiante(String rut, String nombre, String carrera, int numSemestre, String correo, String contraseña) {
 		super();

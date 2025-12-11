@@ -1,10 +1,11 @@
-
+package Dominio;
 public class Notas {
-	private Estudiante estudiante;
-	private Curso curso;
-	private double calificacion;
-	private String estado;
-	private String semestre;
+	protected Estudiante estudiante;
+	protected Curso curso;
+	protected double calificacion;
+	protected String estado;
+	protected String semestre;
+	
 	public Notas(Estudiante estudiante, Curso curso, double calificacion, String estado, String semestre) {
 		super();
 		this.estudiante = estudiante;
