@@ -7,6 +7,7 @@ public class Estudiante {
 	private String correo;
 	private String contraseña;
 	private ArrayList<Certificacion> certificaciones = new ArrayList<>();
+	private ArrayList<Notas> notas = new ArrayList<>();
 	
 	public Estudiante(String rut, String nombre, String carrera, int numSemestre, String correo, String contraseña) {
 		super();
@@ -20,6 +21,10 @@ public class Estudiante {
 	
 	public void añadirCertificaciones(Certificacion c) {
 		this.certificaciones.add(c);
+		
+	}
+	public void añadirNota(Notas n) {
+		this.notas.add(n);
 		
 	}
 	//Source

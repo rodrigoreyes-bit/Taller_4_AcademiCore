@@ -7,6 +7,7 @@ public class Curso {
 	private int cantCreditos;
 	private String area;
 	private ArrayList<String> requisitos = new ArrayList<>();
+	private ArrayList<Notas> notas = new ArrayList<>();
 	private Certificacion certificacion;
 
 	public Curso(String nRC, String nombre, int numSemestre, int cantCreditos, String area) {
@@ -20,6 +21,10 @@ public class Curso {
 
 	public void añadirRequisito(String s) {
 		this.requisitos.add(s);
+	}
+	public void añadirNota(Notas n) {
+		this.notas.add(n);
+		
 	}
 
 	// Source

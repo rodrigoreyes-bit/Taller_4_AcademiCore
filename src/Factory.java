@@ -106,6 +106,10 @@ public class Factory {
 			return null;
 		}
 		Notas n = new Notas(estudianteBuscado, cursoBuscado, calificacion, estado, semestre);
+		estudianteBuscado.añadirNota(n);
+		cursoBuscado.añadirNota(n);
+		
+		
 		return n;
 	}
 

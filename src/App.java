@@ -24,8 +24,14 @@ public class App {
 
 	}
 
-	private static void lecturaNotas() {
-		// TODO Auto-generated method stub
+	private static void lecturaNotas() throws FileNotFoundException {
+		File file = new File("notas");
+		archivo = new Scanner(file);
+		while (archivo.hasNextLine()) {
+			String[] lista = archivo.nextLine().split(";");
+			sistema.lectura_Notas(lista[0], lista[1], Double.valueOf(lista[2]), lista[3], lista[4]);
+
+		}
 
 	}
 
