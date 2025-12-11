@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
 public class Factory {
-	
-private static Factory Instancia_Unica;
-	
-    private Factory() {}
+
+	private static Factory Instancia_Unica;
+
+	private Factory() {
+	}
 
 	public static Factory InstanciarFactory() {
 		if (Instancia_Unica == null) {
@@ -25,30 +26,34 @@ private static Factory Instancia_Unica;
 
 	}
 
-	public Curso lectura_Curso(String NCR, String nombre, int numSemestre, int cantCreditos, String area,
+	public Curso crear_Curso(String NCR, String nombre, int numSemestre, int cantCreditos, String area,
 			String requisito) {
 		Curso c = new Curso(NCR, nombre, numSemestre, cantCreditos, area);
-		if (!requisito.equals(null)) {
-			c.setRequisito(requisito);
+		if (!(requisito.equals(null))) {
+			String[] listaIDS = requisito.split(",");
+			for (int i = 0; i < listaIDS.length; i++) {
+				c.añadirRequisito(listaIDS[i]);
+			}
+
 		}
 
 		return c;
 
 	}
 
-	public Estudiante lectura_Estudiante(String rut, String nombre, String carrera, int numSemestre, String correo,
+	public Estudiante crear_Estudiante(String rut, String nombre, String carrera, int numSemestre, String correo,
 			String contraseña) {
 		Estudiante e = new Estudiante(rut, nombre, carrera, numSemestre, correo, contraseña);
 		return e;
 	}
 
-	public Certificacion lectura_Certificacion(String id, String nombre, String descripcion, String requisitos,
+	public Certificacion crear_Certificacion(String id, String nombre, String descripcion, int requisitos,
 			String validez) {
 		Certificacion c = new Certificacion(id, nombre, descripcion, requisitos, validez);
 		return c;
 	}
 
-	public Registro lectura_Registro(ArrayList<Estudiante> estudiantes, ArrayList<Certificacion> certificaciones,
+	public Registro crear_Registro(ArrayList<Estudiante> estudiantes, ArrayList<Certificacion> certificaciones,
 			String estudiante, String certificacion, String fecha, String estado, String progreso) {
 		Estudiante estudianteBuscado = null;
 		Certificacion certificadoBuscado = null;
@@ -70,11 +75,15 @@ private static Factory Instancia_Unica;
 			System.out.println("Error registro");
 			return null;
 		}
+
 		Registro r = new Registro(estudianteBuscado, certificadoBuscado, fecha, estado, progreso);
+		estudianteBuscado.añadirCertificaciones(certificadoBuscado);
+		certificadoBuscado.añadirEstudiantes(estudianteBuscado);
 		return r;
+
 	}
 
-	public Notas lectura_Notas(ArrayList<Estudiante> estudiantes, ArrayList<Curso> cursos, String estudiante,
+	public Notas crear_Notas(ArrayList<Estudiante> estudiantes, ArrayList<Curso> cursos, String estudiante,
 			String curso, double calificacion, String estado, String semestre) {
 		Estudiante estudianteBuscado = null;
 		Curso cursoBuscado = null;

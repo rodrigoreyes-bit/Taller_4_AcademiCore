@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 public class Estudiante {
 	private String rut;
 	private String nombre;
@@ -6,6 +6,7 @@ public class Estudiante {
 	private int numSemestre;
 	private String correo;
 	private String contraseña;
+	private ArrayList<Certificacion> certificaciones = new ArrayList<>();
 	
 	public Estudiante(String rut, String nombre, String carrera, int numSemestre, String correo, String contraseña) {
 		super();
@@ -17,6 +18,10 @@ public class Estudiante {
 		this.contraseña = contraseña;
 	}
 	
+	public void añadirCertificaciones(Certificacion c) {
+		this.certificaciones.add(c);
+		
+	}
 	//Source
 
 	public String getRut() {

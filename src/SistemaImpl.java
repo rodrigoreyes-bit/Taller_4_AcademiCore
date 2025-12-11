@@ -29,33 +29,32 @@ public class SistemaImpl implements Sistema {
 	@Override
 	public void lectura_Curso(String NCR, String nombre, int numSemestre, int cantCreditos, String area,
 			String requisito) {
-
+		cursos.add(factory.crear_Curso(NCR, nombre, numSemestre, cantCreditos, area, requisito));
 	}
 
 	@Override
 	public void lectura_Estudiante(String rut, String nombre, String carrera, int numSemestre, String correo,
 			String contraseña) {
-		// TODO Auto-generated method stub
+		estudiantes.add(factory.crear_Estudiante(rut, nombre, carrera, numSemestre, correo, contraseña));
 
 	}
 
 	@Override
-	public void lectura_Certificacion(String id, String nombre, String descripcion, String requisitos, String validez) {
-		// TODO Auto-generated method stub
-
+	public void lectura_Certificacion(String id, String nombre, String descripcion, int requisitos, String validez) {
+		certificaciones.add(factory.crear_Certificacion(id, nombre, descripcion, requisitos, validez));
 	}
 
 	@Override
 	public void lectura_Registro(String estudiante, String certificacion, String fecha, String estado,
 			String progreso) {
-		// TODO Auto-generated method stub
+		
+		registros.add(factory.crear_Registro(estudiantes, certificaciones, estudiante, certificacion, fecha, estado, progreso));
 
 	}
 
 	@Override
 	public void lectura_Notas(String estudiante, String curso, double calificacion, String estado, String semestre) {
-		// TODO Auto-generated method stub
-
+		notas.add(factory.crear_Notas(estudiantes, cursos, estudiante, curso, calificacion, estado, semestre));
 	}
 
 	@Override

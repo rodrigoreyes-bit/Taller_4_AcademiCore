@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Curso {
 	private String NRC;
@@ -5,7 +6,7 @@ public class Curso {
 	private int numSemestre;
 	private int cantCreditos;
 	private String area;
-	private String requisito;
+	private ArrayList<String> requisitos = new ArrayList<>();
 	private Certificacion certificacion;
 
 	public Curso(String nRC, String nombre, int numSemestre, int cantCreditos, String area) {
@@ -15,6 +16,10 @@ public class Curso {
 		this.numSemestre = numSemestre;
 		this.cantCreditos = cantCreditos;
 		this.area = area;
+	}
+
+	public void añadirRequisito(String s) {
+		this.requisitos.add(s);
 	}
 
 	// Source
@@ -59,12 +64,12 @@ public class Curso {
 		this.area = area;
 	}
 
-	public String getRequisito() {
-		return requisito;
+	public ArrayList<String> getRequisitos() {
+		return requisitos;
 	}
 
-	public void setRequisito(String requisito) {
-		this.requisito = requisito;
+	public void setRequisitos(ArrayList<String> requisitos) {
+		this.requisitos = requisitos;
 	}
 
 	public Certificacion getCertificacion() {
@@ -73,12 +78,6 @@ public class Curso {
 
 	public void setCertificacion(Certificacion certificacion) {
 		this.certificacion = certificacion;
-	}
-
-	@Override
-	public String toString() {
-		return "Curso [NRC=" + NRC + ", nombre=" + nombre + ", numSemestre=" + numSemestre + ", cantCreditos="
-				+ cantCreditos + ", area=" + area + ", requisito=" + requisito + "]";
 	}
 
 }

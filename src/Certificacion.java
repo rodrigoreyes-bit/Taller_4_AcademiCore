@@ -4,11 +4,12 @@ public class Certificacion {
 	private String id;
 	private String nombre;
 	private String descripcion;
-	private String requisitos;
+	private int requisitos;
 	private String validez;
 	private ArrayList<Curso> cursosRelacionados = new ArrayList<>();
+	private ArrayList<Estudiante> estudiantesInscritos = new ArrayList<>();
 
-	public Certificacion(String id, String nombre, String descripcion, String requisitos, String validez) {
+	public Certificacion(String id, String nombre, String descripcion, int requisitos, String validez) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -16,7 +17,9 @@ public class Certificacion {
 		this.requisitos = requisitos;
 		this.validez = validez;
 	}
-
+	public void añadirEstudiantes(Estudiante e) {
+		this.estudiantesInscritos.add(e);
+	}
 	// Source
 
 	public String getId() {
@@ -43,11 +46,11 @@ public class Certificacion {
 		this.descripcion = descripcion;
 	}
 
-	public String getRequisitos() {
+	public int getRequisitos() {
 		return requisitos;
 	}
 
-	public void setRequisitos(String requisitos) {
+	public void setRequisitos(int requisitos) {
 		this.requisitos = requisitos;
 	}
 
