@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 
 public class Estudiante extends Usuario{
-	protected String nombre;
+	public String nombre;
 	protected String carrera;
 	protected int numSemestre;
 	protected String correo;

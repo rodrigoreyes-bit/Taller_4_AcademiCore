@@ -17,7 +17,6 @@ public class Notas {
 	public void setEstudiante(Estudiante estudiante) {
 		this.estudiante = estudiante;
 	}
-	
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
@@ -27,31 +26,22 @@ public class Notas {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
 	public String getSemestre() {
 		return semestre;
 	}
-
-
 	public void setSemestre(String semestre) {
 		this.semestre = semestre;
 	}
-
 	public Estudiante getEstudiante() {
 		return estudiante;
 	}
-
 	public Curso getCurso() {
 		return curso;
 	}
-
 	public double getCalificacion() {
 		return calificacion;
 	}
-
 	public String getEstado() {
 		return estado;
 	}
-	
-
 }
