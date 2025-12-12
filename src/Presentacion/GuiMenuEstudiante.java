@@ -2,7 +2,6 @@ package Presentacion;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import Dominio.Estudiante;
 
 public class GuiMenuEstudiante extends JFrame {
@@ -26,7 +25,6 @@ public class GuiMenuEstudiante extends JFrame {
 	    add(btnPerfilMalla);
 	    add(btnInscripcion);
 	    add(btnProgreso);
-	    add(new JButton("Funcionalidad Pendiente"));
 	    add(btnCerrar);
 	        
 	    btnPerfilMalla.addActionListener(e -> {
@@ -34,9 +32,13 @@ public class GuiMenuEstudiante extends JFrame {
 	    });
 	    
 	    btnInscripcion.addActionListener(e -> {
+	        new GuiInscripcion(estudiante).setVisible(true);
+
 	    });
 	    
 	    btnProgreso.addActionListener(e -> {
+	        new GuiSeguimiento(estudiante).setVisible(true);
+
 	    });
 	    
 	    btnCerrar.addActionListener(e -> {

@@ -1,10 +1,11 @@
 package Presentacion;
-import Dominio.Visitor;
 import Dominio.Certificacion;
 import Dominio.Curso;
 import Dominio.Estudiante;
 import Dominio.Notas;
 import Dominio.SistemaImpl;
+import Logica.Visitor;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;

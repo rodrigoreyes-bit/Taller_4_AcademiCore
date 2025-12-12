@@ -1,7 +1,7 @@
 package Dominio;
 
 public abstract class Usuario {
-	protected String username;
+	public String username;
 	protected String contraseña;
 	protected String rol;
 	

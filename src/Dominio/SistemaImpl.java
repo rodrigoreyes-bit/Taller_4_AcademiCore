@@ -7,6 +7,7 @@
 package Dominio;
 import java.util.ArrayList;
 
+import Logica.Factory;
 import Logica.Sistema;
 import Presentacion.GuiPrincipal;
 

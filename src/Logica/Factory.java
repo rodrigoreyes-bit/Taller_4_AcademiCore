@@ -1,5 +1,14 @@
-package Dominio;
+package Logica;
 import java.util.ArrayList;
+
+import Dominio.Admin;
+import Dominio.Certificacion;
+import Dominio.Coordinador;
+import Dominio.Curso;
+import Dominio.Estudiante;
+import Dominio.Notas;
+import Dominio.Registro;
+import Dominio.Usuario;
 
 
 public class Factory {

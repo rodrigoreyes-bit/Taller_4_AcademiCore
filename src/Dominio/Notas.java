@@ -1,9 +1,9 @@
 package Dominio;
 public class Notas {
 	protected Estudiante estudiante;
-	protected Curso curso;
-	protected double calificacion;
-	protected String estado;
+	public Curso curso;
+	public double calificacion;
+	public String estado;
 	protected String semestre;
 	
 	public Notas(Estudiante estudiante, Curso curso, double calificacion, String estado, String semestre) {

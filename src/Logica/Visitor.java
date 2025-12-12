@@ -1,4 +1,9 @@
-package Dominio;
+package Logica;
+
+import Dominio.Certificacion;
+import Dominio.Estudiante;
+import Dominio.Notas;
+import Dominio.SistemaImpl;
 
 public class Visitor {
 	
