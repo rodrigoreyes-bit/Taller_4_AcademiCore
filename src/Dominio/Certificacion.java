@@ -21,7 +21,6 @@ public class Certificacion {
 	public void añadirEstudiantes(Estudiante e) {
 		this.estudiantesInscritos.add(e);
 	}
-	// Source
 
 	public String getId() {
 		return id;
@@ -70,5 +69,14 @@ public class Certificacion {
 	public void setCursosRelacionados(ArrayList<Curso> cursosRelacionados) {
 		this.cursosRelacionados = cursosRelacionados;
 	}
-
+	
+	public ArrayList<Estudiante> getEstudiantesInscritos() {
+		return estudiantesInscritos;
+	}
+	
+	public void agregarEstudiante(Estudiante e) {
+	    if (!estudiantesInscritos.contains(e)) {
+	        estudiantesInscritos.add(e);
+	    }
+	}
 }

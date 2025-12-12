@@ -27,9 +27,7 @@ public class Estudiante extends Usuario{
 	}
 	public void añadirNota(Notas n) {
 		this.notas.add(n);
-		
 	}
-
 
 	public String getNombre() {
 		return nombre;
@@ -57,5 +55,9 @@ public class Estudiante extends Usuario{
 
 	public ArrayList<Notas> getNotas() {
 		return notas;
+	}
+
+	public boolean tieneCertificacion(Certificacion c) {
+	    return certificaciones.contains(c);
 	}
 }

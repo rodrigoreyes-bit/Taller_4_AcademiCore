@@ -1,6 +1,8 @@
 package Presentacion;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.*;
 import Dominio.*;
 
@@ -11,24 +13,20 @@ public class GuiMenuCoordinador extends JFrame {
     public GuiMenuCoordinador(Usuario coordinador) {
 
         setTitle("Menú Coordinador");
-        setSize(450, 500);
+        setSize(450, 700);
         setLayout(new GridLayout(8, 1, 5, 5));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        // ---- BLOQUE 1: Gestión de Certificaciones ----
         JButton btnModificarLinea = new JButton("Modificar línea de certificación");
         JButton btnGenerarCertificados = new JButton("Generar certificados para estudiantes");
-
-        // ---- BLOQUE 2: Panel de Métricas y Análisis ----
+        
         JButton btnEstadisticas = new JButton("Estadísticas de inscripciones");
         JButton btnAnalisisCriticas = new JButton("Análisis de asignaturas críticas");
 
-        // ---- BLOQUE 3: Gestión de Estudiantes ----
         JButton btnPerfilEstudiante = new JButton("Consultar perfiles completos");
         JButton btnValidarAvance = new JButton("Validar avances académicos");
 
-        // ---- Cerrar sesión ----
         JButton btnCerrar = new JButton("Cerrar sesión");
 
         add(btnModificarLinea);
@@ -39,30 +37,195 @@ public class GuiMenuCoordinador extends JFrame {
         add(btnValidarAvance);
         add(btnCerrar);
 
-        // ---------------------------
-        // ACCIONES DE LOS BOTONES
-        // ---------------------------
-
         btnModificarLinea.addActionListener(e -> modificarLineaCertificacion());
-
-        /*
-         * btnGenerarCertificados.addActionListener(e -> generarCertificados());
-
+        btnGenerarCertificados.addActionListener(e -> generarCertificados());
         btnEstadisticas.addActionListener(e -> estadisticasInscripciones());
-
         btnAnalisisCriticas.addActionListener(e -> analisisAsignaturasCriticas());
-
         btnPerfilEstudiante.addActionListener(e -> perfilEstudiante());
-
-        btnValidarAvance.addActionListener(e -> validarAvances().);
-
+        btnValidarAvance.addActionListener(e -> validarAvances());
         btnCerrar.addActionListener(e -> { new GuiPrincipal().setVisible(true);
         });
-         */
-        
     }
     
-    public void modificarLineaCertificacion() {
+    private void validarAvances() {
+    	JFrame frame = new JFrame();
+    	frame.setTitle("Validar Avances Académicos");
+        frame.setSize(500, 400);
+        frame.setLocationRelativeTo(null);
+        frame.setLayout(new GridLayout(2, 1));
+
+        JComboBox<String> combo = new JComboBox<>();
+        JTextArea info = new JTextArea();
+        info.setEditable(false);
+
+        for (Estudiante e : sistema.getEstudiantes()) {
+            combo.addItem(e.getIdentificacion());
+        }
+
+        frame.add(combo);
+        frame.add(new JScrollPane(info));
+
+        combo.addActionListener(e -> {
+            Estudiante est = sistema.buscarEstudiante((String) combo.getSelectedItem());
+
+            if (est != null) {
+                StringBuilder s = new StringBuilder();
+
+                s.append("Avance académico de: ").append(est.getNombre()).append("\n\n");
+
+                s.append("Cursos aprobados:\n");
+                for (Notas n : est.getNotas()) {
+                    if (n.getCalificacion() >= 4.0) {
+                        s.append(" - ").append(n.getCurso().nombre).append("\n");
+                    }
+                }
+
+                s.append("\nCursos reprobados:\n");
+                for (Notas n : est.getNotas()) {
+                    if (n.getCalificacion() < 4.0) {
+                        s.append(" x ").append(n.getCurso().nombre).append("\n");
+                    }
+                }
+
+                s.append("\n¿Completó la línea de certificación?: ");
+                if (sistema.estudianteCompletoLinea(est)) {
+                	s.append("SÍ");
+                } else {
+                	s.append("NO");
+                }
+
+                info.setText(s.toString());
+            }
+        });
+        frame.setVisible(true);
+    }
+
+	private void perfilEstudiante() {
+		JFrame frame = new JFrame();
+		frame.setTitle("Perfil de Estudiante");
+        frame.setSize(500, 500);
+        frame.setLayout(new GridLayout(2, 1));
+        frame.setLocationRelativeTo(null);
+
+        JComboBox<String> combo = new JComboBox<>();
+        JTextArea info = new JTextArea();
+        info.setEditable(false);
+
+        for (Estudiante e : sistema.getEstudiantes()) {
+            combo.addItem(e.getIdentificacion());
+        }
+
+        frame.add(combo);
+        frame.add(new JScrollPane(info));
+
+        combo.addActionListener(e -> {
+            Estudiante est = sistema.buscarEstudiante((String) combo.getSelectedItem());
+            if (est != null) {
+                StringBuilder s = new StringBuilder();
+                s.append("Nombre: ").append(est.getNombre()).append("\n");
+                s.append("Carrera: ").append(est.getCarrera()).append("\n");
+                s.append("Semestre: ").append(est.getNumSemestre()).append("\n\n");
+
+                s.append("CERTIFICACIONES:\n");
+                for (Certificacion c : est.getCertificaciones()) {
+                    s.append(" - ").append(c.nombre).append("\n");
+                }
+
+                s.append("\nNOTAS:\n");
+                for (Notas n : est.getNotas()) {
+                    s.append(n.getCurso().nombre)
+                     .append(" : ")
+                     .append(n.getCalificacion())
+                     .append(" (")
+                     .append(n.getEstado())
+                     .append(")\n");
+                }
+
+                info.setText(s.toString());
+            }
+        });
+        frame.setVisible(true);
+    }
+
+	private void analisisAsignaturasCriticas() {
+		JFrame frame = new JFrame();
+		frame.setTitle("Análisis de Asignaturas Críticas");
+        frame.setSize(500, 400);
+        frame.setLocationRelativeTo(null);
+
+        String[] columnas = {"NRC", "Asignatura", "Reprobaciones"};
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+
+        for (Curso c : sistema.getCursos()) {
+            modelo.addRow(new Object[]{
+                c.NRC,
+                c.nombre,
+                c.getNumReprobaciones()
+            });
+        }
+
+        JTable tabla = new JTable(modelo);
+        frame.add(new JScrollPane(tabla), BorderLayout.CENTER);
+        frame.setVisible(true);
+    }
+
+	private void estadisticasInscripciones() {
+		JFrame frame = new JFrame();
+		frame.setTitle("Estadísticas de Inscripciones");
+        frame.setSize(500, 400);
+        frame.setLocationRelativeTo(null);
+
+        String[] columnas = {"Certificación", "Inscritos"};
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+
+        for (Certificacion c : sistema.getCertificaciones()) {
+            modelo.addRow(new Object[]{
+                c.nombre,
+                c.getEstudiantesInscritos().size()
+            });
+        }
+
+        JTable tabla = new JTable(modelo);
+        frame.add(new JScrollPane(tabla), BorderLayout.CENTER);
+        frame.setVisible(true);
+    }
+
+	private void generarCertificados() {
+	    JFrame frame = new JFrame();
+	    frame.setTitle("Generar Certificados");
+	    frame.setSize(400, 200);
+	    frame.setLayout(new GridLayout(2, 1, 10, 10));
+	    frame.setLocationRelativeTo(null);
+
+	    JButton btnGenerar = new JButton("Generar certificados");
+	    JTextArea resultado = new JTextArea();
+	    resultado.setEditable(false);
+
+	    frame.add(btnGenerar);
+	    frame.add(new JScrollPane(resultado));
+
+	    btnGenerar.addActionListener(e -> {
+	        resultado.setText("");
+	        boolean alguno = false;
+
+	        for (Estudiante est : sistema.getEstudiantes()) {
+	            if (sistema.estudianteCompletoLinea(est)) {
+	                resultado.append("Certificado generado para: " + est.getNombre() + "\n");
+	                alguno = true;
+	            }
+	        }
+
+	        if (alguno) {
+	            JOptionPane.showMessageDialog(null, "Certificados generados con éxito!!");
+	        } else {
+	            JOptionPane.showMessageDialog(null, "No hay estudiantes que cumplan la línea.");
+	        }
+	    });
+
+	    frame.setVisible(true);
+	}
+
+	public void modificarLineaCertificacion() {
     	
     	JFrame frame = new JFrame();
         frame.setTitle("Modificar Línea de Certificación");
@@ -119,7 +282,7 @@ public class GuiMenuCoordinador extends JFrame {
                 if (!txtReq.getText().isEmpty()) c.requisitos = Integer.parseInt(txtReq.getText());
                 if (!txtValidez.getText().isEmpty()) c.validez = txtValidez.getText();
 
-                JOptionPane.showMessageDialog(null, "Certificación actualizada con éxito");
+                JOptionPane.showMessageDialog(null, "Certificación actualizada con éxito!!");
                 frame.setVisible(false);
             }
         });

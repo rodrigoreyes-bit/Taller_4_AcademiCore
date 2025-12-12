@@ -1,6 +1,4 @@
 package Dominio;
-
-
 public class Coordinador extends Usuario{
 	private String infoAdicional;
 

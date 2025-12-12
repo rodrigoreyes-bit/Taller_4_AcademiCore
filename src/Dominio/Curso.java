@@ -25,7 +25,6 @@ public class Curso {
 	}
 	public void añadirNota(Notas n) {
 		this.notas.add(n);
-		
 	}
 
 	public String getNRC() {
@@ -88,5 +87,13 @@ public class Curso {
 		return notas;
 	}
 	
-	
+	public int getNumReprobaciones() {
+	    int cont = 0;
+	    for (Notas n : notas) {
+	        if (n.getCalificacion() < 4.0) { 
+	            cont++;
+	        }
+	    }
+	    return cont;
+	}
 }

@@ -1,3 +1,9 @@
+/* Nombre: Ninibeth Pérez Cortés, RUT: 21.787.686-9, Carrera: ICCI | Nombre: Rodrigo Reyes Alfaro, RUT: 22.123.808-7, Carrera: ICCI
+ * Nombre: Ninibeth Pérez Cortés, RUT: 21.787.686-9, Carrera: ICCI | Nombre: Rodrigo Reyes Alfaro, RUT: 22.123.808-7, Carrera: ICCI
+ * Nombre: Ninibeth Pérez Cortés, RUT: 21.787.686-9, Carrera: ICCI | Nombre: Rodrigo Reyes Alfaro, RUT: 22.123.808-7, Carrera: ICCI
+ * Nombre: Ninibeth Pérez Cortés, RUT: 21.787.686-9, Carrera: ICCI | Nombre: Rodrigo Reyes Alfaro, RUT: 22.123.808-7, Carrera: ICCI
+ * Nombre: Ninibeth Pérez Cortés, RUT: 21.787.686-9, Carrera: ICCI | Nombre: Rodrigo Reyes Alfaro, RUT: 22.123.808-7, Carrera: ICCI
+ */
 package Dominio;
 import java.util.ArrayList;
 
@@ -105,15 +111,64 @@ public class SistemaImpl implements Sistema {
 	}
 	
 	public Certificacion buscarCertificacion(String id) {
-	    if (certificaciones == null || certificaciones.isEmpty()) {
-	        return null;
-	    }
-
 	    for (Certificacion c : certificaciones) {
 	        if (c.id.equals(id)) {
 	            return c;
 	        }
 	    }
 	    return null;
+	}
+	
+	public boolean estudianteCompletoLinea(Estudiante est) {
+	    Certificacion cert = null;
+	    for (Certificacion c : certificaciones) {
+	        if (c.getEstudiantesInscritos().contains(est)) {
+	            cert = c;
+	            break;
+	        }
+	    }
+
+	    if (cert == null) return false;
+
+	    for (Curso cursoLinea : cert.getCursosRelacionados()) {
+	        boolean aprobado = false;
+
+	        for (Notas n : notas) {
+
+	            if (n.getEstudiante().equals(est) && n.getCurso().equals(cursoLinea) && n.getCalificacion() >= 4.0) {
+	                aprobado = true;
+	                break;
+	            }
+	        }
+
+	        if (!aprobado) return false; 
+	    }
+
+	    return true;
+	}
+	
+	public Estudiante buscarEstudiante(String id) {
+	    for (Estudiante e : estudiantes) {
+	        if (e.username.equals(id)) { //el username es el rut
+	            return e;
+	        }
+	    }
+	    return null;
+	}
+
+	public ArrayList<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public ArrayList<Estudiante> getEstudiantes() {
+		return estudiantes;
+	}
+
+	public ArrayList<Registro> getRegistros() {
+		return registros;
+	}
+
+	public ArrayList<Notas> getNotas() {
+		return notas;
 	}
 }
