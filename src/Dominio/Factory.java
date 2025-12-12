@@ -20,7 +20,7 @@ public class Factory {
 		String username = partes[0];
 		String contraseña = partes[1];
 		String rol = partes[2];
-		System.out.println(username + " " + contraseña);
+		
 		
 		switch(rol) {
 		case "Admin":

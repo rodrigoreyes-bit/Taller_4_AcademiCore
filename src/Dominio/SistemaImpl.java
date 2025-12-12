@@ -80,9 +80,6 @@ public class SistemaImpl implements Sistema {
 				cursoBuscado = c;
 			}
 		}
-		if (certificadoBuscado == null || cursoBuscado == null) {
-			System.out.println("Error asignacion");
-		}
 		cursoBuscado.setCertificacion(certificadoBuscado);
 	}
 
@@ -132,7 +129,6 @@ public class SistemaImpl implements Sistema {
 
 	    for (Curso cursoLinea : cert.getCursosRelacionados()) {
 	        boolean aprobado = false;
-
 	        for (Notas n : notas) {
 
 	            if (n.getEstudiante().equals(est) && n.getCurso().equals(cursoLinea) && n.getCalificacion() >= 4.0) {
@@ -140,7 +136,6 @@ public class SistemaImpl implements Sistema {
 	                break;
 	            }
 	        }
-
 	        if (!aprobado) return false; 
 	    }
 
