@@ -85,11 +85,11 @@ El proyecto sigue una arquitectura de 3 capas claramente separada en paquetes: *
     * La ejecución comienza en la clase principal  `App.java`.
 
 4.  **Credenciales de Prueba (Login):**
-    | Rol | Usuario/Nombre | Contraseña/Rut | 
+    | Rol | Usuario/rut | Contraseña| 
     | :--- | :--- | :--- |
     | **Administrador** | `admin` | `admin123` |
     | **Coordinador** | `coord.is` | `coord123` |
-    | **Estudiante** | `Juan Carlos Pérez López` | `12345678` |
+    | **Estudiante** | `12345678-9` | `contraseña123` |
 
 ---
 
