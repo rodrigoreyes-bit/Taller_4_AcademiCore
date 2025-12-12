@@ -16,9 +16,17 @@ import Dominio.Estudiante;
 import Dominio.SistemaImpl;
 import Dominio.Usuario;
 
+/**
+ * Interfaz gráfica de usuario para el Menú del Administrador.
+ * Permite realizar la gestión básica de cuentas de usuario.
+ */
 public class GuiMenuAdmin extends JFrame {
 	SistemaImpl sistema = SistemaImpl.InstanciarSistemaImpl();
 
+	/**
+	 * Constructor para la clase GuiMenuAdmin.
+	 * Configura la ventana principal con los botones de gestión de usuarios.
+	 */
 	public GuiMenuAdmin() {
 		setTitle("Menú Administrador");
 		setTitle("Gestión de Usuarios");
@@ -47,6 +55,10 @@ public class GuiMenuAdmin extends JFrame {
 		btnVolver.addActionListener(e -> dispose());
 	}
 
+	/**
+	 * Abre una ventana para crear una nueva cuenta de usuario.
+	 * Incluye validación básica de campos y manejo de lógica específica según el tipo de cuenta.
+	 */
 	private void crearCuenta() {
 	    JFrame frame = new JFrame("Crear Cuenta");
 	    frame.setSize(450, 450);
@@ -131,7 +143,8 @@ public class GuiMenuAdmin extends JFrame {
 	                String nombre = txtNombre.getText();
 	                String info = txtInfoExtra.getText();
 
-	                String[] partes = {user, pass, nombre, info};
+	                // Nota: Asume que el arreglo de partes para Coordinador es {user, pass, rol(implícito/nombre), info}
+	                String[] partes = {user, pass, nombre, info}; 
 	                sistema.lectura_Usuario(partes);
 	            }
 
@@ -150,6 +163,10 @@ public class GuiMenuAdmin extends JFrame {
 	}
 
 
+	/**
+	 * Abre una ventana para buscar y modificar los datos de una cuenta existente.
+	 * Permite actualizar la contraseña, el nombre (para Estudiantes) o la información adicional (para Coordinadores).
+	 */
 	private void modificarCuenta() {
 	    JFrame frame = new JFrame("Modificar Cuenta");
 	    frame.setSize(450, 400);
@@ -241,6 +258,10 @@ public class GuiMenuAdmin extends JFrame {
 	}
 
 
+	/**
+	 * Abre una ventana para eliminar una cuenta de usuario por su identificación (RUT/Usuario).
+	 * La cuenta se elimina de las listas de usuarios y estudiantes, según corresponda.
+	 */
 	private void eliminarCuenta() {
 	    JFrame frame = new JFrame("Eliminar Cuenta");
 	    frame.setSize(350, 180);
@@ -282,6 +303,10 @@ public class GuiMenuAdmin extends JFrame {
 	    frame.setVisible(true);
 	}
 
+	/**
+	 * Abre una ventana para restablecer la contraseña de cualquier usuario (Admin, Estudiante, Coordinador)
+	 * basándose en su identificación.
+	 */
 	private void resetContraseña() {
 	    JFrame frame = new JFrame("Restablecer Contraseña");
 	    frame.setSize(350, 200);

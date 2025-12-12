@@ -1,10 +1,5 @@
-/* Nombre: Ninibeth Pérez Cortés, RUT: 21.787.686-9, Carrera: ICCI | Nombre: Rodrigo Reyes Alfaro, RUT: 22.123.808-7, Carrera: ICCI
- * Nombre: Ninibeth Pérez Cortés, RUT: 21.787.686-9, Carrera: ICCI | Nombre: Rodrigo Reyes Alfaro, RUT: 22.123.808-7, Carrera: ICCI
- * Nombre: Ninibeth Pérez Cortés, RUT: 21.787.686-9, Carrera: ICCI | Nombre: Rodrigo Reyes Alfaro, RUT: 22.123.808-7, Carrera: ICCI
- * Nombre: Ninibeth Pérez Cortés, RUT: 21.787.686-9, Carrera: ICCI | Nombre: Rodrigo Reyes Alfaro, RUT: 22.123.808-7, Carrera: ICCI
- * Nombre: Ninibeth Pérez Cortés, RUT: 21.787.686-9, Carrera: ICCI | Nombre: Rodrigo Reyes Alfaro, RUT: 22.123.808-7, Carrera: ICCI
- */
 package Presentacion;
+
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -19,11 +14,19 @@ import Dominio.Estudiante;
 import Dominio.SistemaImpl;
 import Dominio.Usuario;
 
+/**
+ * Interfaz gráfica de usuario para el inicio de sesión (Login) principal del sistema AcademiCore.
+ * Valida las credenciales y dirige al usuario al menú correspondiente a su rol.
+ */
 public class GuiPrincipal extends JFrame{
 	private JTextField txtUser;
     private JPasswordField txtPass;
     private JButton btnLogin;
 
+    /**
+     * Constructor para la clase GuiPrincipal.
+     * Configura la ventana y los campos para el ingreso de usuario y contraseña.
+     */
     public GuiPrincipal() {
         setTitle("AcademiCore - Login");
         setSize(350, 200);
@@ -50,26 +53,37 @@ public class GuiPrincipal extends JFrame{
         
     }
 
+    /**
+     * Procesa la solicitud de inicio de sesión.
+     * Valida las credenciales del usuario y lanza la interfaz de menú
+     * correspondiente a su rol.
+     */
     private void login() {
 	    String user = txtUser.getText();
 	    String pass = new String(txtPass.getPassword());
 
 	    SistemaImpl sistema = SistemaImpl.InstanciarSistemaImpl();
 	    Usuario u = sistema.validacion(user, pass);
+	    
 	    if (u == null) {
 	        JOptionPane.showMessageDialog(this, "Credenciales incorrectas");
 	        return;
 	    }
+	    
+	    dispose(); 
+	    
 	    switch(u.getRol()) {
 	    case "Admin":
 	        new GuiMenuAdmin().setVisible(true);
-	        return;
+	        break;
 	    case "Coordinador":
 	        new GuiMenuCoordinador(u).setVisible(true);
-	        return;
+	        break;
 	    case "Estudiante":
 		    new GuiMenuEstudiante((Estudiante) u).setVisible(true);
-	    	return;
+	    	break;
+	    default:
+	        JOptionPane.showMessageDialog(this, "Rol de usuario no reconocido.");
 	    }
 	}
 }

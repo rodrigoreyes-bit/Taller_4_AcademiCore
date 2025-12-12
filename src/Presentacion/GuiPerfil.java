@@ -19,10 +19,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+/**
+ * Interfaz gráfica de usuario para visualizar el perfil del estudiante y su malla curricular.
+ * Muestra información personal, promedios y el estado de las asignaturas mediante colores.
+ */
 public class GuiPerfil extends JFrame {
 
     private SistemaImpl sistema = SistemaImpl.InstanciarSistemaImpl();
 
+    /**
+     * Constructor para la clase GuiPerfil.
+     * Configura la ventana y divide la visualización en dos secciones: perfil y malla.
+     * @param estudiante El estudiante cuyo perfil se va a mostrar.
+     */
     public GuiPerfil(Estudiante estudiante) {
         setTitle("Perfil y Malla Curricular");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -39,16 +48,30 @@ public class GuiPerfil extends JFrame {
         setLocationRelativeTo(null);
     }
     
+    /**
+     * Clase interna auxiliar para manejar los resultados del cálculo de promedios.
+     */
     private static class PromedioSemestre {
         String semestre;
         double promedio;
         
+        /**
+         * Constructor para PromedioSemestre.
+         * @param semestre Nombre o identificador del semestre.
+         * @param promedio El promedio calculado.
+         */
         public PromedioSemestre(String semestre, double promedio) {
             this.semestre = semestre;
             this.promedio = promedio;
         }
     }
     
+    /**
+     * Busca la nota final de un estudiante para un curso específico.
+     * @param estudiante El estudiante.
+     * @param nrc El NRC del curso a buscar.
+     * @return El objeto Notas si se encuentra, o null.
+     */
     private Notas buscarNota(Estudiante estudiante, String nrc) {
         for (Notas n : estudiante.getNotas()) {
             if (n.getCurso().getNRC().equals(nrc)) {
@@ -58,6 +81,12 @@ public class GuiPerfil extends JFrame {
         return null;
     }
 
+    /**
+     * Calcula el promedio general y el promedio por semestre del estudiante,
+     * considerando solo las asignaturas con estado "Aprobado" o "Reprobado".
+     * @param estudiante El estudiante.
+     * @return Un ArrayList de objetos PromedioSemestre.
+     */
     private ArrayList<PromedioSemestre> calcularPromedios(Estudiante estudiante) {
         ArrayList<PromedioSemestre> resultados = new ArrayList<>();
         
@@ -97,8 +126,13 @@ public class GuiPerfil extends JFrame {
         return resultados;
     }
 
-
+    /**
+     * Crea el panel superior que contiene la información personal y los promedios.
+     * @param estudiante El estudiante.
+     * @return El JPanel de perfil.
+     */
     private JPanel crearPanelPerfil(Estudiante estudiante) {
+        // Información Personal
         JPanel panelInfo = new JPanel(new GridLayout(2, 4, 5, 5));
         panelInfo.setBorder(BorderFactory.createTitledBorder("Información Personal"));
         
@@ -111,6 +145,7 @@ public class GuiPerfil extends JFrame {
         panelInfo.add(new JLabel("Correo:"));
         panelInfo.add(new JLabel(estudiante.getCorreo()));
         
+        // Promedios
         ArrayList<PromedioSemestre> promedios = calcularPromedios(estudiante);
         
         JPanel panelPromedios = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -131,9 +166,15 @@ public class GuiPerfil extends JFrame {
         return panelSuperior;
     }
 
+    /**
+     * Crea el panel central que muestra la Malla Curricular agrupada por semestre 
+     * e implementa los indicadores visuales e interactividad.
+     * @param estudiante El estudiante.
+     * @return El JPanel de la malla curricular.
+     */
     private JPanel crearPanelMalla(Estudiante estudiante) {
         JPanel panelMalla = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10)); 
-        panelMalla.setBorder(BorderFactory.createTitledBorder("Malla Curricular Mejorada"));
+        panelMalla.setBorder(BorderFactory.createTitledBorder("Malla Curricular"));
         panelMalla.setBackground(Color.WHITE); 
         
         ArrayList<Curso> cursos = sistema.getCursos();
@@ -201,6 +242,11 @@ public class GuiPerfil extends JFrame {
         return panelMalla;
     }
     
+    /**
+     * Muestra una ventana de diálogo con información detallada de una asignatura.
+     * Incluye nombre, NRC, créditos, requisitos y certificación asociada.
+     * @param nrc El NRC del curso del que se quieren ver los detalles.
+     */
     private void mostrarDetalles(String nrc) {
         Curso curso = sistema.getCursos().stream().filter(c -> c.getNRC().equals(nrc)).findFirst().orElse(null);
         

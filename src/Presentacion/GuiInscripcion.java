@@ -9,15 +9,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Interfaz gráfica de usuario para el proceso de Inscripción a Certificaciones.
+ * Muestra las certificaciones disponibles, sus requisitos, y maneja la validación
+ * y el registro de inscripción del estudiante.
+ */
 public class GuiInscripcion extends JFrame {
 
-	private final Estudiante estudiante;
-	private final SistemaImpl sistema = SistemaImpl.InstanciarSistemaImpl();
+	private Estudiante estudiante;
+	private SistemaImpl sistema = SistemaImpl.InstanciarSistemaImpl();
 	private JComboBox<String> cmbCertificaciones;
 	private JTextArea txtDescripcion;
 	private JButton btnInscribir;
 	private List<Certificacion> certificacionesDisponibles;
 
+	/**
+	 * Constructor para la clase GuiInscripcion.
+	 * * @param estudiante El estudiante que está utilizando la interfaz para inscribirse.
+	 */
 	public GuiInscripcion(Estudiante estudiante) {
 		this.estudiante = estudiante;
 		setTitle("Inscripción a Certificaciones");
@@ -45,6 +54,10 @@ public class GuiInscripcion extends JFrame {
 		cargarCertificaciones();
 	}
 
+	/**
+	 * Crea el panel que contiene la lista desplegable de certificaciones disponibles.
+	 * * @return El panel que contiene el JComboBox.
+	 */
 	private JPanel crearPanelLista() {
 		JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		panel.add(new JLabel("Certificaciones Disponibles:"));
@@ -53,6 +66,9 @@ public class GuiInscripcion extends JFrame {
 		return panel;
 	}
 
+	/**
+	 * Carga la lista de todas las certificaciones disponibles en el JComboBox.
+	 */
 	private void cargarCertificaciones() {
 		certificacionesDisponibles = sistema.getCertificaciones();
 		cmbCertificaciones.removeAllItems();
@@ -62,7 +78,12 @@ public class GuiInscripcion extends JFrame {
 		}
 	}
 
+	/**
+	 * Configura los ActionListeners para el JComboBox y el botón de inscripción,
+	 * manejando la lógica de validación y el proceso de inscripción.
+	 */
 	private void configurarAcciones() {
+		// Acción al seleccionar una certificación en el JComboBox
 		cmbCertificaciones.addActionListener(e -> {
 			String nombreSeleccionado = (String) cmbCertificaciones.getSelectedItem();
 			if (nombreSeleccionado != null && !nombreSeleccionado.equals("Seleccionar")) {

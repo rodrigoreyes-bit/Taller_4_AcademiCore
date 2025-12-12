@@ -11,8 +11,11 @@ import java.awt.*;
 import java.util.ArrayList;
 
 
-   
-
+/**
+ * Interfaz gráfica de usuario para el Seguimiento de Progreso del Estudiante en las certificaciones.
+ * Muestra las certificaciones inscritas (Dashboard), aplica el patrón Visitor para acciones
+ * específicas y lista las asignaturas que faltan por aprobar.
+ */   
 public class GuiSeguimiento extends JFrame {
 
     private Estudiante estudiante;
@@ -21,6 +24,11 @@ public class GuiSeguimiento extends JFrame {
     private JList<String> listaCertificaciones;
     private JTextArea txtProgreso;
 
+    /**
+     * Constructor para la clase GuiSeguimiento.
+     * Configura la ventana principal con el listado de certificaciones inscritas.
+     * @param estudiante El estudiante cuyo progreso se va a seguir.
+     */
     public GuiSeguimiento(Estudiante estudiante) {
         this.estudiante = estudiante;
         setTitle("Seguimiento de Progreso");
@@ -41,6 +49,10 @@ public class GuiSeguimiento extends JFrame {
         setLocationRelativeTo(null);
     }
 
+    /**
+     * Crea el panel que muestra el dashboard personal con el progreso en certificaciones inscritas.
+     * @return El JPanel con la JList de certificaciones.
+     */
     private JPanel crearPanelCertificaciones() {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createTitledBorder("Certificaciones Inscritas"));
@@ -64,6 +76,10 @@ public class GuiSeguimiento extends JFrame {
         return panel;
     }
     
+    /**
+     * Configura el Listener para la JList, que se activa al seleccionar una certificación.
+     * Ejecuta el Visitor y muestra las asignaturas pendientes.
+     */
     private void configurarAcciones() {
         listaCertificaciones.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting() && listaCertificaciones.getSelectedIndex() != -1) {

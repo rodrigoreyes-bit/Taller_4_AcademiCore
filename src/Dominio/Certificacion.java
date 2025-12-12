@@ -148,8 +148,13 @@ public class Certificacion {
 	 * * @param e El estudiante a agregar.
 	 */
 	public void agregarEstudiante(Estudiante e) {
-	    if (!estudiantesInscritos.contains(e)) {
-	        estudiantesInscritos.add(e);
-	    }
+
+	    if (!estudiantesInscritos.contains(e)) {
+
+	        estudiantesInscritos.add(e);
+
+	    }
+
 	}
-}
+
+	}

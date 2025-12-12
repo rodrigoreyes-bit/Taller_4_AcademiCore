@@ -6,10 +6,20 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import Dominio.*;
 
+/**
+ * Interfaz gráfica de usuario para el Menú del Coordinador.
+ * Proporciona funcionalidades para la gestión de certificaciones, generación de reportes,
+ * validación de avance académico y análisis de asignaturas críticas.
+ */
 public class GuiMenuCoordinador extends JFrame {
 
     SistemaImpl sistema = SistemaImpl.InstanciarSistemaImpl();
 
+    /**
+     * Constructor para la clase GuiMenuCoordinador.
+     * Configura la ventana principal con las opciones de gestión.
+     * @param coordinador El usuario Coordinador que ha iniciado sesión.
+     */
     public GuiMenuCoordinador(Usuario coordinador) {
 
         setTitle("Menú Coordinador");
@@ -47,6 +57,10 @@ public class GuiMenuCoordinador extends JFrame {
         });
     }
     
+    /**
+     * Abre una ventana para validar el avance académico de un estudiante seleccionado.
+     * Muestra los cursos aprobados y reprobados, y verifica si completó la línea de certificación.
+     */
     private void validarAvances() {
     	JFrame frame = new JFrame();
     	frame.setTitle("Validar Avances Académicos");
@@ -100,6 +114,10 @@ public class GuiMenuCoordinador extends JFrame {
         frame.setVisible(true);
     }
 
+    /**
+     * Abre una ventana para consultar el perfil completo de un estudiante seleccionado,
+     * incluyendo información personal, certificaciones inscritas y notas detalladas.
+     */
 	private void perfilEstudiante() {
 		JFrame frame = new JFrame();
 		frame.setTitle("Perfil de Estudiante");
@@ -147,6 +165,10 @@ public class GuiMenuCoordinador extends JFrame {
         frame.setVisible(true);
     }
 
+    /**
+     * Abre una ventana que muestra un análisis de asignaturas críticas.
+     * Lista todos los cursos y el número de veces que han sido reprobados.
+     */
 	private void analisisAsignaturasCriticas() {
 		JFrame frame = new JFrame();
 		frame.setTitle("Análisis de Asignaturas Críticas");
@@ -169,6 +191,10 @@ public class GuiMenuCoordinador extends JFrame {
         frame.setVisible(true);
     }
 
+    /**
+     * Abre una ventana que muestra estadísticas de inscripción por certificación.
+     * Muestra el nombre de la certificación y la cantidad de estudiantes inscritos.
+     */
 	private void estadisticasInscripciones() {
 		JFrame frame = new JFrame();
 		frame.setTitle("Estadísticas de Inscripciones");
@@ -190,6 +216,10 @@ public class GuiMenuCoordinador extends JFrame {
         frame.setVisible(true);
     }
 
+    /**
+     * Abre una ventana que permite generar certificados para todos los estudiantes
+     * que han cumplido con los requisitos de la línea de certificación en la que están inscritos.
+     */
 	private void generarCertificados() {
 	    JFrame frame = new JFrame();
 	    frame.setTitle("Generar Certificados");
@@ -225,6 +255,10 @@ public class GuiMenuCoordinador extends JFrame {
 	    frame.setVisible(true);
 	}
 
+    /**
+     * Abre una ventana que permite modificar los atributos principales de una línea de certificación
+     * seleccionada (nombre, descripción, requisitos y validez).
+     */
 	public void modificarLineaCertificacion() {
     	
     	JFrame frame = new JFrame();
@@ -279,7 +313,14 @@ public class GuiMenuCoordinador extends JFrame {
             if (c != null) {
                 if (!txtNombre.getText().isEmpty()) c.nombre = txtNombre.getText();
                 if (!txtDesc.getText().isEmpty()) c.descripcion = txtDesc.getText();
-                if (!txtReq.getText().isEmpty()) c.requisitos = Integer.parseInt(txtReq.getText());
+                if (!txtReq.getText().isEmpty()) {
+                    try {
+                        c.requisitos = Integer.parseInt(txtReq.getText());
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "El requisito debe ser un número entero.");
+                        return;
+                    }
+                }
                 if (!txtValidez.getText().isEmpty()) c.validez = txtValidez.getText();
 
                 JOptionPane.showMessageDialog(null, "Certificación actualizada con éxito!!");
