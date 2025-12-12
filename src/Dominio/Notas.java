@@ -28,4 +28,29 @@ public class Notas {
 		this.estado = estado;
 	}
 
+	public String getSemestre() {
+		return semestre;
+	}
+
+	public void setSemestre(String semestre) {
+		this.semestre = semestre;
+	}
+
+	public Estudiante getEstudiante() {
+		return estudiante;
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public double getCalificacion() {
+		return calificacion;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+	
+
 }
