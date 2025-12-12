@@ -32,7 +32,7 @@ public class GuiPerfil extends JFrame {
         JPanel panelPerfil = crearPanelPerfil(estudiante);
         add(panelPerfil, BorderLayout.NORTH);
 
-        JPanel panelMalla = crearPanelMallaMejorado(estudiante);
+        JPanel panelMalla = crearPanelMalla(estudiante);
         add(new JScrollPane(panelMalla), BorderLayout.CENTER); 
 
         pack(); 
@@ -58,8 +58,6 @@ public class GuiPerfil extends JFrame {
         return null;
     }
 
-
-    // 1. CORRECCIÓN DEL PROMEDIO GENERAL
     private ArrayList<PromedioSemestre> calcularPromedios(Estudiante estudiante) {
         ArrayList<PromedioSemestre> resultados = new ArrayList<>();
         
@@ -133,9 +131,10 @@ public class GuiPerfil extends JFrame {
         return panelSuperior;
     }
 
-    private JPanel crearPanelMallaMejorado(Estudiante estudiante) {
+    private JPanel crearPanelMalla(Estudiante estudiante) {
         JPanel panelMalla = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10)); 
         panelMalla.setBorder(BorderFactory.createTitledBorder("Malla Curricular Mejorada"));
+        panelMalla.setBackground(Color.WHITE); 
         
         ArrayList<Curso> cursos = sistema.getCursos();
         
@@ -152,6 +151,7 @@ public class GuiPerfil extends JFrame {
             JPanel panelSemestre = new JPanel();
             panelSemestre.setLayout(new GridLayout(0, 1, 3, 3)); 
             panelSemestre.setBorder(BorderFactory.createTitledBorder("SEMESTRE " + semestreActual));
+            panelSemestre.setBackground(Color.WHITE);
             
             boolean tieneCursos = false;
             
@@ -167,20 +167,25 @@ public class GuiPerfil extends JFrame {
                         String.format(" %s (%s) | Nota: %s | Créditos: %d", 
                                         curso.getNombre(), estado, calificacion, curso.getCantCreditos())
                     );
+                    
                     lblAsignatura.setOpaque(true);
                     lblAsignatura.setBorder(BorderFactory.createLineBorder(Color.GRAY));
                     
-                    if (estado.equals("Aprobado")) {
-                        lblAsignatura.setBackground(new Color(144, 238, 144));
-                    } else if (estado.equals("Reprobado")) {
-                        lblAsignatura.setBackground(new Color(255, 160, 122));
+                    String estadoNormalizado = estado.trim().toUpperCase();
+
+                    if (estadoNormalizado.equals("APROBADO")) {
+                        lblAsignatura.setBackground(new Color(144, 238, 144)); 
+                    } else if (estadoNormalizado.equals("REPROBADO")) {
+                        lblAsignatura.setBackground(new Color(255, 160, 122)); 
+                    } else if (estadoNormalizado.equals("PENDIENTE") || estadoNormalizado.equals("CURSANDO")) {
+                        lblAsignatura.setBackground(new Color(240, 240, 240)); 
                     } else {
-                        lblAsignatura.setBackground(Color.WHITE); 
+                        lblAsignatura.setBackground(Color.LIGHT_GRAY); 
                     }
-                    
+
                     lblAsignatura.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
-                            mostrarDetallesCurso(curso.getNRC());
+                            mostrarDetalles(curso.getNRC());
                         }
                     });
                     
@@ -196,7 +201,7 @@ public class GuiPerfil extends JFrame {
         return panelMalla;
     }
     
-    private void mostrarDetallesCurso(String nrc) {
+    private void mostrarDetalles(String nrc) {
         Curso curso = sistema.getCursos().stream().filter(c -> c.getNRC().equals(nrc)).findFirst().orElse(null);
         
         if (curso != null) {
